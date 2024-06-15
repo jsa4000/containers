@@ -54,7 +54,7 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.OWNER_NAME }}/${{ env.APP_NAME }}:latest,${{ env.REGISTRY }}/${{ env.OWNER_NAME }}/${{ env.APP_NAME }}:${{ env.VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
           #outputs: type=image,name=${{ env.REGISTRY }}/${{ env.OWNER_NAME }}/${{ env.APP_NAME }},push-by-digest=true,name-canonical=true,push=true
-          outputs: type=image,name=${{ env.REGISTRY }}/${{ env.OWNER_NAME }}/${{ env.APP_NAME }},push-by-digest=false,name-canonical=true,push=true
+          #outputs: type=image,name=${{ env.REGISTRY }}/${{ env.OWNER_NAME }}/${{ env.APP_NAME }},push-by-digest=false,name-canonical=true,push=true
 
       - name: Export digest
         run: |
