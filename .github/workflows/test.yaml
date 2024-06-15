@@ -28,7 +28,7 @@ jobs:
           dir_names_max_depth: 1
           json: true
 
-      - run: echo "${{ steps.changed-files.dirs }}"
+      - run: echo "${{ steps.changed-files }}"
 
   # do-stuff:
   #   runs-on: ubuntu-latest
@@ -38,5 +38,5 @@ jobs:
   #     - find-out-changes
   #   steps:
   #     - uses: actions/checkout@v4
-  #     - run: echo "${{ matrix.dir }}""
+  #     - run: echo "${{ matrix.dir }}"
 
