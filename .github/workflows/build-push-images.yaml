@@ -44,6 +44,7 @@ jobs:
     needs:
       - find-changes
     steps:
+      - uses: actions/checkout@v4
       - uses: .github/workflows/build-push-image.yaml
         with:
           registry: ghcr.io
