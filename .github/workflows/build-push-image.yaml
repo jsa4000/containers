@@ -47,7 +47,7 @@ env:
   registry: ${{ inputs.registry == null && 'ghcr.io' || inputs.registry }}
   owner: ${{ inputs.owner == null && github.repository_owner || inputs.owner }}
   platforms: ${{ inputs.platforms == null && 'linux/amd64,linux/arm64' || inputs.platforms }}
-  image: ${{ env.registry }}/${{ env.owner }}/${{ env.app }}
+  #image: ${{ env.registry }}/${{ env.owner }}/${{ env.app }}
  
 jobs:
   # https://docs.docker.com/build/ci/github-actions/multi-platform/
@@ -58,8 +58,11 @@ jobs:
       contents: read
       packages: write
     steps:
+      - name: "Set environmental variables"
+        run: |
+          echo "image=${{ env.registry }}/${{ env.owner }}/${{ env.app }}" >> $GITHUB_ENV
       # Debug environment variables
-      - run: echo "${{ env.app }},${{ env.version }},${{ env.registry }},${{ env.owner }},${{ env.platforms }}"
+      - run: echo "${{ env.app }},${{ env.version }},${{ env.registry }},${{ env.owner }},${{ env.platforms }},${{ env.image }}"
       - name: Checkout repository
         uses: actions/checkout@v4
       
