@@ -1,3 +1,3 @@
 # ToolBox
 
-Container image with a variety of linux tools.
+Container image with a variety of linux tools already installed.
