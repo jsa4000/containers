@@ -1,0 +1,45 @@
+name: Test Workflow
+ 
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+    paths:
+      - '*/**'
+      - '!*/*.md'
+      - '!.github/**'
+      - '!*'
+
+jobs:
+  find-folder-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.changed-files.dirs }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          dir_names: true
+          dir_names_max_depth: 2
+          json: true
+          quotepath: false
+
+      - name: 'Set output in the matrix format'
+        id: set-output
+        run: echo "changed_directories={\"dir\":${{ steps.changed-files.outputs.all_changed_files }}}" >> "$GITHUB_OUTPUT"
+
+  do-stuff:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{fromJson(needs.find-out-changes.outputs.dirs)}}
+    needs:
+      - find-out-changes
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "${{ matrix.dir }}""
+
