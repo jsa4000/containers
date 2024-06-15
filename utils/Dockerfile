@@ -26,3 +26,4 @@ COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/usr/bin/catatonit", "--"]
 CMD ["/entrypoint.sh"]
 
+LABEL org.opencontainers.image.description "Container Image with command line utils."
