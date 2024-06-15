@@ -27,6 +27,10 @@ jobs:
           dir_names: true
           dir_names_max_depth: 1
           matrix: true
+          files_ignore: |
+            */*.md
+            .github/**
+            *
 
       - run: echo "${{ steps.changed-files.outputs.all_changed_and_modified_files }}"
 
