@@ -1,4 +1,4 @@
-name: Build and publish Images
+name: Build and publish Images Released
  
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       - name: Parse App from Tag
         id: parse-tag
         run: |
-           echo "app=$(${{ github.ref_name }} | sed 's/\([^/]*\).*/\1/')" >> $GITHUB_OUTPUT
+           echo "app=$(echo '${{ github.ref_name }}' | sed 's/\([^/]*\).*/\1/')" >> $GITHUB_OUTPUT
 
       - run: echo "${{ steps.parse-tag.outputs.app }}"
 
