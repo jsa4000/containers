@@ -6,9 +6,6 @@ on:
       app:
         required: true
         type: string
-      version:
-        required: true
-        type: string
       registry:
         required: false
         type: string
@@ -24,10 +21,6 @@ on:
         required: true
         type: string
         description: 'Application to build (i.e: toolbox)'
-      version:
-        required: true
-        type: string
-        description: 'Version to generate (i.e.: alpine-3.20)'
       registry:
         required: false
         type: string
@@ -43,11 +36,9 @@ on:
 
 env:
   app: ${{ inputs.app }}
-  version: ${{ inputs.version }}
   registry: ${{ inputs.registry == null && 'ghcr.io' || inputs.registry }}
   owner: ${{ inputs.owner == null && github.repository_owner || inputs.owner }}
   platforms: ${{ inputs.platforms == null && 'linux/amd64,linux/arm64' || inputs.platforms }}
-  #image: ${{ env.registry }}/${{ env.owner }}/${{ env.app }}
  
 jobs:
   # https://docs.docker.com/build/ci/github-actions/multi-platform/
@@ -97,6 +88,5 @@ jobs:
           push: true
           labels: ${{ steps.meta.outputs.labels }}
           # https://github.com/docker/metadata-action
-          # tags: ${{ steps.meta.outputs.tags }}
-          tags: ${{ env.image }}:latest,${{ env.image }}:${{ env.version }}
+          tags: ${{ steps.meta.outputs.tags }}
       
