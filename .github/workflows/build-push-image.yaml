@@ -1,7 +1,16 @@
 name: Build and publish Image
  
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      registry:
+        required: true
+        type: string
+        default: ghcr.io
+      owner:
+        required: true
+        type: string
+        default: ${{ github.repository_owner }}
   # push:
   #   branches: ['main']
   #   paths:
