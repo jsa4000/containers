@@ -6,23 +6,23 @@ on:
       registry:
         required: false
         type: string
-        #default: ghcr.io
+        default: ghcr.io
       owner:
         required: false
         type: string
-        #default: ${{ github.repository_owner }}
+        default: ${{ github.repository_owner }}
   workflow_dispatch:
     inputs:
       registry:
         required: false
         type: string
         description: 'Registry to be used (default: ghcr.io)'
-        #default: ghcr.io
+        default: ghcr.io
       owner:
         required: false
         type: string
         description: 'Registry to be used (default: repo owner)'
-        #default: ${{ github.repository_owner }}
+        default: ${{ github.repository_owner }}
 
 env:
   registry: ${{ inputs.registry == null && 'ghcr.io' || inputs.registry }}
