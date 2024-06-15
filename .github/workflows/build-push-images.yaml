@@ -43,13 +43,11 @@ jobs:
       fail-fast: false
     needs:
       - find-changes
-    steps:
-      # You can't call a local action on a repository without using the actions/checkout 
-      # - uses: actions/checkout@v4
-      - uses: jsa4000/containers/.github/workflows/build-push-image.yaml@main
-        with:
-          registry: ghcr.io
-          owner: ${{ github.repository_owner }}
-          platforms: linux/amd64,linux/arm64
-          app: ${{ matrix.paths }}
-          version: 1.0.0
+    # Reusable workflows must be at the top-level, not within steps.
+    uses: jsa4000/containers/.github/workflows/build-push-image.yaml@main
+    with:
+      registry: ghcr.io
+      owner: ${{ github.repository_owner }}
+      platforms: linux/amd64,linux/arm64
+      app: ${{ matrix.paths }}
+      version: 1.0.0
