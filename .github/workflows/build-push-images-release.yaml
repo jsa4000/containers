@@ -9,7 +9,7 @@ jobs:
   parse-tag:
     runs-on: ubuntu-latest
     outputs:
-      paths: ${{ steps.parse-tag.outputs.app }}
+      app: ${{ steps.parse-tag.outputs.app }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,22 +22,17 @@ jobs:
 
       - run: echo "${{ steps.parse-tag.outputs.app }}"
 
-  #build-changed-images:
-  #  strategy:
-  #    matrix: 
-  #      paths: ${{ fromJSON(needs.find-changes.outputs.paths) }}
-  #    max-parallel: 4
-  #    fail-fast: false
-  #  needs:
-  #    - find-changes
-  #  # Permissions are needed to be set from the parent workflow
-  #  permissions:
-  #    contents: read
-  #    packages: write
-  #  # Reusable workflows must be at the top-level, not within steps.
-  #  uses: jsa4000/containers/.github/workflows/build-push-image.yaml@main
-  #  with:
-  #    registry: ghcr.io
-  #    owner: ${{ github.repository_owner }}
-  #    platforms: linux/amd64,linux/arm64
-  #    app: ${{ matrix.paths }}
+  build-changed-images:
+    needs:
+      - parse-tag
+    # Permissions are needed to be set from the parent workflow
+    permissions:
+      contents: read
+      packages: write
+    # Reusable workflows must be at the top-level, not within steps.
+    uses: jsa4000/containers/.github/workflows/build-push-image.yaml@main
+    with:
+      registry: ghcr.io
+      owner: ${{ github.repository_owner }}
+      platforms: linux/amd64,linux/arm64
+      app: ${{ needs.parse-tag.outputs.app }}
