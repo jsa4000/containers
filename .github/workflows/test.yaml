@@ -1,4 +1,4 @@
-name: Test Workflow
+name: Build and publish Images
  
 on:
   workflow_dispatch:
@@ -9,12 +9,6 @@ on:
       - '!*/*.md'
       - '!.github/**'
       - '!*'
-env:
-  REGISTRY: ghcr.io
-  OWNER_NAME: ${{ github.repository_owner }}
-  PLATFORMS: linux/amd64,linux/arm64
-  APP_NAME: toolbox
-  VERSION: alpine-3.20
 
 jobs:
   find-changes:
