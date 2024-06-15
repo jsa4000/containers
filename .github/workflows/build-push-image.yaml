@@ -6,7 +6,7 @@ on:
     branches: ['main']
     paths:
       - '!.github/**'
-      - '*'
+      - '!*'
 
 env:
   REGISTRY: ghcr.io
