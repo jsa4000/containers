@@ -58,11 +58,12 @@ jobs:
       contents: read
       packages: write
     steps:
+      # https://brandur.org/fragments/github-actions-env-vars-in-env-vars
       - name: "Set environmental variables"
         run: |
           echo "image=${{ env.registry }}/${{ env.owner }}/${{ env.app }}" >> $GITHUB_ENV
       # Debug environment variables
-      - run: echo "${{ env.app }},${{ env.version }},${{ env.registry }},${{ env.owner }},${{ env.platforms }},${{ env.image }}"
+      - run: echo "${{ env.app }};${{ env.version }};${{ env.registry }};${{ env.owner }};${{ env.platforms }};${{ env.image }}"
       - name: Checkout repository
         uses: actions/checkout@v4
       
