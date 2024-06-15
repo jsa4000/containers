@@ -45,8 +45,8 @@ jobs:
       - find-changes
     steps:
       # You can't call a local action on a repository without using the actions/checkout 
-      - uses: actions/checkout@v4
-      - uses: .github/workflows/build-push-image.yaml
+      # - uses: actions/checkout@v4
+      - uses: jsa4000/containers/.github/workflows/build-push-image.yaml@main
         with:
           registry: ghcr.io
           owner: ${{ github.repository_owner }}
