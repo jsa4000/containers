@@ -11,7 +11,7 @@ on:
     #   - '!*'
 
 jobs:
-  find-out-changes:
+  find-changes:
     runs-on: ubuntu-latest
     outputs:
       paths: ${{ steps.changed-files.outputs.all_changed_and_modified_files }}
@@ -34,11 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        paths: ${{ fromJSON(needs.find-out-changes.outputs.paths) }}
+        paths: ${{ fromJSON(needs.find-changes.outputs.paths) }}
       max-parallel: 4
       fail-fast: false
     needs:
-      - find-out-changes
+      - find-changes
     steps:
       - uses: actions/checkout@v4
       - run: echo "${{ matrix.paths }}"
