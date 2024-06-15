@@ -74,6 +74,7 @@ jobs:
       - name: Extract metadata (tags, labels) from repository
         id: meta
         # https://github.com/docker/metadata-action
+        # Match allow to tag independently as "app/v1.0.0"
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.image }}
