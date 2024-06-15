@@ -1,5 +1,7 @@
 FROM docker.io/library/alpine:3.20
 
+LABEL org.opencontainers.image.description "Container Image with command line utils."
+
 ARG TARGETPLATFORM
 
 USER root
@@ -25,5 +27,3 @@ COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/catatonit", "--"]
 CMD ["/entrypoint.sh"]
-
-LABEL org.opencontainers.image.description "Container Image with command line utils."
