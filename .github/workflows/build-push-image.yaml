@@ -81,7 +81,7 @@ jobs:
           # type=semver,pattern={{major}}.{{minor}}
           # type=semver,pattern={{major}}
           tags: |
-            type=match,priority=1000,pattern=${{ env.app }}/v(\d.\d.\d)
+            type=match,priority=1000,pattern=${{ env.app }}/v(\d.\d.\d),group=1
             type=ref,event=branch
             type=ref,event=pr
       
