@@ -4,22 +4,22 @@ on:
   workflow_call:
     inputs:
       registry:
-        required: true
+        required: false
         type: string
         #default: ghcr.io
       owner:
-        required: true
+        required: false
         type: string
         #default: ${{ github.repository_owner }}
   workflow_dispatch:
     inputs:
       registry:
-        required: true
+        required: false
         type: string
         description: 'Registry to be used (default: ghcr.io)'
         #default: ghcr.io
       owner:
-        required: true
+        required: false
         type: string
         description: 'Registry to be used (default: repo owner)'
         #default: ${{ github.repository_owner }}
