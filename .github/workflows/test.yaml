@@ -25,8 +25,8 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           dir_names: true
-          dir_names_max_depth: 1
-          json: true
+          #dir_names_max_depth: 1
+          #json: true
 
       - run: echo "${{ steps.changed-files.dirs }}"
 
