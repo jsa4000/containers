@@ -5,7 +5,7 @@ LABEL maintainer="Javier Santos <jsa4000@gmail.com>" \
       org.opencontainers.image.url="https://github.com/jsa4000/containers.git" \
       org.opencontainers.image.licenses="Apache License" \
       org.opencontainers.image.title="OpenTofu ToolBox" \
-      org.opencontainers.image.description="Container image with OpenTofu and toolbox"
+      org.opencontainers.image.description="Container image with OpenTofu and a variety of linux tools"
 
 ARG TARGETPLATFORM
 
