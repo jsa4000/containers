@@ -17,7 +17,6 @@ RUN \
         jq \
         catatonit \
         moreutils \
-        unrar \
         unzip \
         wget \
         zip
