@@ -1,0 +1,39 @@
+FROM docker.io/library/alpine:3.20
+
+ARG TARGETPLATFORM
+
+USER root
+WORKDIR /app
+
+#hadolint ignore=DL3018
+RUN \
+    apk add --no-cache \
+        bash \
+        ca-certificates \
+        curl \
+        kubectl \
+        jq \
+        catatonit
+
+RUN \
+    apk add --no-cache \
+        bash \
+        ca-certificates \
+        curl \
+        kubectl \
+        git \
+        jo \
+        jq \
+        catatonit \
+        moreutils \
+        unrar \
+        unzip \
+        wget \
+        zip \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY ./utils/entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/usr/bin/catatonit", "--"]
+CMD ["/entrypoint.sh"]
+
