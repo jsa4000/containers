@@ -11,7 +11,7 @@ on:
       - '!*'
 
 jobs:
-  find-folder-changes:
+  find-out-changes:
     runs-on: ubuntu-latest
     outputs:
       dirs: ${{ steps.changed-files.dirs }}
