@@ -28,7 +28,7 @@ jobs:
           dir_names_max_depth: 1
           json: true
 
-      - run: echo "${{ steps.changed-files.all_changed_and_modified_files }}"
+      - run: echo "${{ steps.changed-files.dirs }}"
 
   # do-stuff:
   #   runs-on: ubuntu-latest
