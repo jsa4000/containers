@@ -52,4 +52,4 @@ jobs:
       owner: ${{ github.repository_owner }}
       platforms: linux/amd64,linux/arm64
       app: ${{ matrix.paths }}
-      version: 1.0.0
+      version: 1.1.0
