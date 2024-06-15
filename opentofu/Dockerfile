@@ -8,7 +8,7 @@ LABEL maintainer="Javier Santos <jsa4000@gmail.com>" \
       org.opencontainers.image.version="${VERSION}" \
       org.opencontainers.image.licenses="Apache License" \
       org.opencontainers.image.title="OpenTofu ToolBox" \
-      org.opencontainers.image.description="Container image with OpenTofu and linux tools"
+      org.opencontainers.image.description="Container image with OpenTofu and other linux tools"
 
 ARG TARGETPLATFORM
 
