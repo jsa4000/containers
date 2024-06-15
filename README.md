@@ -1,3 +1,3 @@
 # Containers
 
-Set of custom containers
+Custom container images that provide additional functionality to the official ones.
