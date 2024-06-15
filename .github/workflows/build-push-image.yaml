@@ -3,33 +3,48 @@ name: Build and publish Image
 on:
   workflow_call:
     inputs:
+      app:
+        required: true
+        type: string
+      version:
+        required: true
+        type: string
       registry:
         required: false
         type: string
-        default: ghcr.io
       owner:
         required: false
         type: string
-        default: ${{ github.repository_owner }}
+      platforms:
+        required: false
+        type: string
   workflow_dispatch:
     inputs:
+      app:
+        required: true
+        type: string
+        description: 'Application to build (i.e: toolbox)'
+      version:
+        required: true
+        type: string
+        description: 'Version to generate (i.e.: alpine-3.20)'
       registry:
         required: false
         type: string
         description: 'Registry to be used (default: ghcr.io)'
-        default: ghcr.io
       owner:
         required: false
         type: string
-        description: 'Registry to be used (default: repo owner)'
-        default: ${{ github.repository_owner }}
+        description: 'Owner to be used (default: repo owner)'
+      platforms:
+        required: false
+        type: string
+        description: 'Platforms to be used to build (default: linux/amd64,linux/arm64)'
 
 env:
   registry: ${{ inputs.registry == null && 'ghcr.io' || inputs.registry }}
   owner: ${{ inputs.owner == null && github.repository_owner || inputs.owner }}
-  platforms: linux/amd64,linux/arm64
-  app: toolbox
-  version: alpine-3.20
+  platforms: ${{ inputs.platforms == null && 'linux/amd64,linux/arm64' || inputs.platforms }}
  
 jobs:
   # https://docs.docker.com/build/ci/github-actions/multi-platform/
@@ -40,7 +55,8 @@ jobs:
       contents: read
       packages: write
     steps:
-      - run: echo "${{ env.registry }},${{ env.owner }}"
+      # Debug
+      - run: echo "${{ env.app }},${{ env.version }},${{ env.registry }},${{ env.owner }},${{ env.platforms }}"
       #- name: Checkout repository
       #  uses: actions/checkout@v4
 #
