@@ -35,7 +35,6 @@ jobs:
       - run: echo "${{ steps.changed-files.outputs.all_changed_and_modified_files }}"
 
   build-changed-images:
-    runs-on: ubuntu-latest
     strategy:
       matrix: 
         paths: ${{ fromJSON(needs.find-changes.outputs.paths) }}
