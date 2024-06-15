@@ -76,6 +76,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.image }}
+          tags: |
+            type=semver,pattern={{version}}
       
       - name: Build and push Docker image
         id: build
