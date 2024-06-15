@@ -15,7 +15,7 @@ body:
     attributes:
       label: Application Name
       description: Name of the application you would like containerized
-      placeholder: e.g. Sonarr
+      placeholder: e.g. linkwarden
     validations:
       required: true
 
@@ -24,7 +24,7 @@ body:
     attributes:
       label: Application Source Code URL
       description: URL to the source code of the application
-      placeholder: e.g. https://github.com/Sonarr/Sonarr
+      placeholder: e.g. hhttps://github.com/linkwarden/linkwarden
     validations:
       required: true
 
@@ -34,12 +34,13 @@ body:
       label: Application Language
       description: Language this application is written in
       options:
+        - Java
         - .Net
         - Go
-        - Java
         - PHP
         - Python
         - Ruby
+        - Rust
         - Typescript
         - Other
     validations:

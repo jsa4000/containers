@@ -12,15 +12,6 @@ RUN \
         ca-certificates \
         curl \
         kubectl \
-        jq \
-        catatonit
-
-RUN \
-    apk add --no-cache \
-        bash \
-        ca-certificates \
-        curl \
-        kubectl \
         git \
         jo \
         jq \
@@ -29,10 +20,9 @@ RUN \
         unrar \
         unzip \
         wget \
-        zip \
-    && rm -rf /var/lib/apt/lists/*
+        zip
 
-COPY ./utils/entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/catatonit", "--"]
 CMD ["/entrypoint.sh"]
