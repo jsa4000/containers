@@ -26,7 +26,7 @@ on:
 
 env:
   registry: ${{ inputs.registry == null && 'ghcr.io' || inputs.registry }}
-  owner: ${{ inputs.owner == null && '${{ github.repository_owner }}' || inputs.owner }}
+  owner: ${{ inputs.owner == null && github.repository_owner || inputs.owner }}
   platforms: linux/amd64,linux/arm64
   app: toolbox
   version: alpine-3.20
