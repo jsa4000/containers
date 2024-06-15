@@ -1,4 +1,4 @@
-name: Build and publish Images Changed
+name: Build and publish Images
  
 on:
   workflow_dispatch:
