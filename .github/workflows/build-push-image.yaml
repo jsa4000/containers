@@ -78,7 +78,7 @@ jobs:
         with:
           images: ${{ env.image }}
           tags: |
-            type=match,pattern=${{ env.app }}/v(\d.\d.\d),priority=1000
+            type=match,priority=1000,pattern=${{ env.app }}/v(\d.\d.\d)
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
