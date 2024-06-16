@@ -32,7 +32,7 @@ RUN \
 #hadolint ignore=DL3018
 RUN \
     curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh && \
-    bash ./install-opentofu.sh --skip-verify --install-method standalone --opentofu-version"${OPENTOFU_VERSION}" && \
+    bash ./install-opentofu.sh --skip-verify --install-method standalone --opentofu-version "${OPENTOFU_VERSION}" && \
     rm install-opentofu.sh
     
 COPY entrypoint.sh /entrypoint.sh
