@@ -17,6 +17,7 @@ RUN \
     apk add --no-cache \
         bash \
         ca-certificates \
+        openssl \
         curl \
         kubectl \
         git \
