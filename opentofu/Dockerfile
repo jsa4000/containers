@@ -8,6 +8,7 @@ LABEL maintainer="Javier Santos <jsa4000@gmail.com>" \
       org.opencontainers.image.description="Container image with OpenTofu and a variety of linux tools"
 
 ARG TARGETPLATFORM
+ENV OPENTOFU_VERSION=1.7.2
 
 USER root
 WORKDIR /app
@@ -28,6 +29,12 @@ RUN \
         wget \
         zip
 
+#hadolint ignore=DL3018
+RUN \
+    curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh && \
+    bash ./install-opentofu.sh --skip-verify --install-method standalone --opentofu-version"${OPENTOFU_VERSION}" && \
+    rm install-opentofu.sh
+    
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/catatonit", "--"]
