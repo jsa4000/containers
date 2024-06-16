@@ -1,3 +1,14 @@
 # OpenTofu
 
-Container image based on Alpine distribution, OpenTofu binary and a variety of linux tools already installed.
+Container image based on `alpine` distribution with a variety of linux tools installed.
+
+The image contains:
+
+- opentofu
+- bash
+- jq
+- kubectl
+- openssl
+- curl
+- git
+- more
