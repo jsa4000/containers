@@ -1,10 +1,5 @@
 version: "3"
 
-vars:
-  ANSIBLE_DIR: "{{.ROOT_DIR}}/infrastructure/ansible/kubernetes"
-
-dotenv: [.env]
-
 includes:
   precommit: .github/taskfiles/pre-commit.yaml
   lint: .github/taskfiles/lint.yaml
