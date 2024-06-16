@@ -8,6 +8,11 @@ on:
     types: [opened, reopened, synchronize]
   workflow_dispatch: {}
 
+# Permission is required to create a github release and autolabeler
+permissions:
+  contents: write
+  pull-requests: write
+
 # Support for Multiple Packages
 # https://github.com/release-drafter/release-drafter/issues/575
 jobs:
