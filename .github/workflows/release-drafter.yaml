@@ -17,7 +17,7 @@ permissions:
 # https://github.com/release-drafter/release-drafter/issues/575
 jobs:
   toolbox:
-    name: '[toolbox] Draft release'
+    name: "[toolbox] Draft release"
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@v6
@@ -26,7 +26,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   opentofu:
-    name: '[opentofu] Draft release'
+    name: "[opentofu] Draft release"
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@v6

@@ -1,0 +1,15 @@
+version: "3"
+
+includes:
+  precommit: .github/taskfiles/pre-commit.yaml
+  lint: .github/taskfiles/lint.yaml
+  format: .github/taskfiles/format.yaml
+  brew: .github/taskfiles/brew.yaml
+
+tasks:
+  default:
+    silent: true
+    cmds: ["task -l"]
+  init:
+    - task: precommit:init
+    # - task: brew:init

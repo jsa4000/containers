@@ -1,6 +1,6 @@
 _extends: containers:.github/release-drafter/base.yaml
-name-template: 'toolbox-v$RESOLVED_VERSION'
-tag-template: 'toolbox-v$RESOLVED_VERSION'
+name-template: "toolbox-v$RESOLVED_VERSION"
+tag-template: "toolbox-v$RESOLVED_VERSION"
 tag-prefix: toolbox-v
 include-paths:
   - "toolbox/"

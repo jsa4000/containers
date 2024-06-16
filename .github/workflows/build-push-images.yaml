@@ -1,16 +1,16 @@
 name: Build and publish Images
- 
+
 on:
   workflow_dispatch:
   push:
-    branches: ['main']
+    branches: ["main"]
     tags:
-      - 'v*'
+      - "v*"
     paths:
-      - '*/**'
-      - '!*/*.md'
-      - '!.github/**'
-      - '!*'
+      - "*/**"
+      - "!*/*.md"
+      - "!.github/**"
+      - "!*"
 
 jobs:
   find-changes:
@@ -38,7 +38,7 @@ jobs:
 
   build-changed-images:
     strategy:
-      matrix: 
+      matrix:
         paths: ${{ fromJSON(needs.find-changes.outputs.paths) }}
       max-parallel: 4
       fail-fast: false

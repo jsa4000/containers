@@ -1,8 +1,8 @@
 <div align="center">
 
-## Containers
+# Containers
 
-_An opinionated collection of container images_
+An opinionated collection of container images
 
 </div>
 
@@ -22,14 +22,24 @@ The goal of this project is to support [semantically versioned](https://semver.o
 
 It also adheres to a [KISS principle](https://en.wikipedia.org/wiki/KISS_principle), logging to stdout, [one process per container](https://testdriven.io/tips/59de3279-4a2d-4556-9cd0-b444249ed31e/), no [s6-overlay](https://github.com/just-containers/s6-overlay) and all images are built on top of [Alpine](https://hub.docker.com/_/alpine) or [Ubuntu](https://hub.docker.com/_/ubuntu).
 
+## Tools
+
+Below are some of the tools I find useful.
+
+| Tool                                                                  | Purpose                                                                             |
+| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [Renovate](https://github.com/renovatebot/renovate)                   | Automatically finds new releases for the applications and issues corresponding PR's |
+| [super-linter](https://github.com/super-linter/super-linter)          | A collection of linters and code analyzers, to help validate your source code.      |
+| [release-drafter](https://github.com/release-drafter/release-drafter) | Drafts your next release notes as pull requests are merged into master.             |
+
 ## Available Images
 
 Current available Images are the following.
 
-| Container | Channel | Image |
-| --- | --- | --- |
-| [toolbox](https://github.com/jsa4000/containers/pkgs/container/toolbox) | stable | ghcr.io/jsa4000/toolbox |
-| [opentofu](https://github.com/jsa4000/containers/pkgs/container/opentofu) | stable | ghcr.io/jsa4000/opentofu |
+| Container                                                                 | Channel | Image                    |
+| ------------------------------------------------------------------------- | ------- | ------------------------ |
+|  [toolbox](https://github.com/jsa4000/containers/pkgs/container/toolbox)  | stable  | ghcr.io/jsa4000/toolbox  |
+| [opentofu](https://github.com/jsa4000/containers/pkgs/container/opentofu) | stable  | ghcr.io/jsa4000/opentofu |
 
 ## Credits
 
