@@ -1,0 +1,31 @@
+name: Lint
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Super-linter
+        uses: super-linter/super-linter@v6.6.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_YAML: true
+          VALIDATE_MARKDOWN: true
+          VALIDATE_JSON: true
+          VALIDATE_RENOVATE: true
+
