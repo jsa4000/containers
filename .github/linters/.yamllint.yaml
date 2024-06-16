@@ -1,7 +1,5 @@
 ignore: |
   .vscode/
-  **/charts/**/*
-  **/templates/**/*
 
 extends: default
 
