@@ -2,16 +2,16 @@ categories:
   - title: 💥 Breaking changes
     labels:
       - breaking
-  - title: '🚀 New features and improvements'
+  - title: "🚀 New features and improvements"
     labels:
-      - 'enhancement'
-  - title: '🐛 Bug Fixes'
+      - "enhancement"
+  - title: "🐛 Bug Fixes"
     labels:
-      - 'bug'
+      - "bug"
   - title: 📝 Documentation updates
     labels:
       - documentation
-  - title: '🧰 Maintenance'
+  - title: "🧰 Maintenance"
     labels:
       - chore
       - maintenance
@@ -33,33 +33,33 @@ template: |
 
   Thanks to $CONTRIBUTORS for your contributions to this release!
 
-change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
 change-title-escapes: '\<*_&'
-no-changes-template: '- No changes'
+no-changes-template: "- No changes"
 
 version-resolver:
   major:
     labels:
-      - 'major'
+      - "major"
   minor:
     labels:
-      - 'minor'
+      - "minor"
   patch:
     labels:
-      - 'patch'
+      - "patch"
   default: patch
 
 autolabeler:
-  - label: 'documentation'
+  - label: "documentation"
     files:
-      - '*.md'
+      - "*.md"
     branch:
       - '/docs{0,1}\/.+/'
-  - label: 'bug'
+  - label: "bug"
     branch:
       - '/fix\/.+/'
     title:
-      - '/fix/i'
-  - label: 'enhancement'
+      - "/fix/i"
+  - label: "enhancement"
     branch:
       - '/feature\/.+/'

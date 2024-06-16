@@ -29,4 +29,3 @@ jobs:
           VALIDATE_JSON: true
           VALIDATE_RENOVATE: true
           YAML_CONFIG_FILE: .yamllint.yaml
-
