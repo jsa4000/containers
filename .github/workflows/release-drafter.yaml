@@ -1,0 +1,29 @@
+name: Release Drafter
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+# Support for Multiple Packages
+# https://github.com/release-drafter/release-drafter/issues/575
+jobs:
+  toolbox:
+    name: '[toolbox] Draft release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v6
+        with:
+          config-name: release-drafter/toolbox.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  opentofu:
+    name: '[opentofu] Draft release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v6
+        with:
+          config-name: release-drafter/opentofu.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

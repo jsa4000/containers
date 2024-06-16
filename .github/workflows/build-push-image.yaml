@@ -54,7 +54,7 @@ jobs:
         run: |
           echo "image=${{ env.registry }}/${{ env.owner }}/${{ env.app }}" >> $GITHUB_ENV
       # Debug environment variables
-      - run: echo "${{ env.app }};${{ env.version }};${{ env.registry }};${{ env.owner }};${{ env.platforms }};${{ env.image }}"
+      # - run: echo "${{ env.app }};${{ env.version }};${{ env.registry }};${{ env.owner }};${{ env.platforms }};${{ env.image }}"
       - name: Checkout repository
         uses: actions/checkout@v4
       
@@ -74,13 +74,13 @@ jobs:
       - name: Extract metadata (tags, labels) from repository
         id: meta
         # https://github.com/docker/metadata-action
-        # Match allow to tag independently as "app/v1.0.0"
-        # echo "app/v1.0.0" | sed 's/\([^/]*\).*/\1/'
+        # Match allow to tag independently as "app-v1.0.0"
+        # echo "app-v1.0.0" | sed 's/\([^-]*\).*/\1/'
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.image }}
           tags: |
-            type=match,priority=1000,pattern=${{ env.app }}/v(\d.\d.\d),group=1
+            type=match,priority=1000,pattern=${{ env.app }}-v(\d.\d.\d),group=1
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
