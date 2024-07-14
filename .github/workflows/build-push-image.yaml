@@ -80,7 +80,7 @@ jobs:
         with:
           images: ${{ env.image }}
           tags: |
-            type=match,priority=1000,pattern=${{ env.app }}-v(\d.\d.\d),group=1
+            type=match,priority=1000,pattern=${{ env.app }}-v(.*),group=1
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
