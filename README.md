@@ -38,8 +38,9 @@ Current available Images are the following.
 
 | Container                                                                 | Channel | Image                    |
 | ------------------------------------------------------------------------- | ------- | ------------------------ |
-|  [toolbox](https://github.com/jsa4000/containers/pkgs/container/toolbox)  | stable  | ghcr.io/jsa4000/toolbox  |
+| [toolbox](https://github.com/jsa4000/containers/pkgs/container/toolbox)  | stable  | ghcr.io/jsa4000/toolbox  |
 | [opentofu](https://github.com/jsa4000/containers/pkgs/container/opentofu) | stable  | ghcr.io/jsa4000/opentofu |
+| [excalidraw](https://github.com/jsa4000/containers/pkgs/container/excalidraw) | stable  | ghcr.io/jsa4000/excalidraw |
 
 ## Credits
 
