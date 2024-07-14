@@ -14,11 +14,18 @@ docker buildx create --use --platform=linux/amd64,linux/arm64 --name multi-platf
 # Build docker image for multiple architectures (using previous multi-platform builder created)
 docker buildx build --platform linux/amd64,linux/arm64 -t excalidraw .
 
-# Build only one platform (use --no-cache for 'Segmentation fault' error)
+# Force to build specific platform (use --no-cache)
 docker buildx build --no-cache --platform linux/arm64 -t excalidraw .
 
 # Run container image
 docker run -p 8080:80 excalidraw
+```
+
+Following are useful commands.
+
+```bash
+# To remove an existing builder use following command
+docker buildx rm multi-platform-builder
 ```
 
 ## Local
