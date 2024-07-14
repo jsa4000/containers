@@ -2,7 +2,7 @@ FROM node:18 AS build
 
 WORKDIR /opt/node_app
 
-#ARG NODE_ENV=production
+ARG NODE_ENV=production
 ENV EXCALIDRAW_VERSION=v0.17.3
 
 RUN git clone -b "${EXCALIDRAW_VERSION}" --single-branch --depth 1 https://github.com/excalidraw/excalidraw.git . \
