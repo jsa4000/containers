@@ -2,15 +2,20 @@ FROM node:18 AS build
 
 WORKDIR /opt/node_app
 
-ARG NODE_ENV=production
+# Get the excalidraw source by specifing the version (tag)
 ENV EXCALIDRAW_VERSION=v0.17.3
+RUN git clone -b "${EXCALIDRAW_VERSION}" --single-branch --depth 1 https://github.com/excalidraw/excalidraw.git .
 
-RUN git clone -b "${EXCALIDRAW_VERSION}" --single-branch --depth 1 https://github.com/excalidraw/excalidraw.git . \
-   && yarn --ignore-optional --network-timeout 600000 \
-   && yarn build:app:docker
+# do not ignore optional dependencies:
+# Error: Cannot find module @rollup/rollup-linux-x64-gnu
+RUN yarn --network-timeout 600000
 
-FROM nginx:1.21-alpine
+ARG NODE_ENV=production
 
-COPY --from=build /opt/node_app/build /usr/share/nginx/html
+RUN yarn build:app:docker
+
+FROM nginx:1.24-alpine
+
+COPY --from=build /opt/node_app/excalidraw-app/build /usr/share/nginx/html
 
 HEALTHCHECK CMD wget -q -O /dev/null http://localhost || exit 1
