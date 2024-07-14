@@ -34,3 +34,12 @@ jobs:
           config-name: release-drafter/opentofu.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  excalidraw:
+    name: "[excalidraw] Draft release"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v6
+        with:
+          config-name: release-drafter/excalidraw.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
