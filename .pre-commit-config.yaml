@@ -20,7 +20,7 @@ repos:
           - --ignore-path
           - ".github/linters/.markdownlintignore"
           - -c
-          - .github/linters/.markdown-lint.yaml
+          - .github/linters/.markdownlint.yaml
           - "*.md"
           - "**/*.md"
         id: markdownlint
