@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:3.20
+FROM docker.io/library/alpine:3.21
 
 LABEL maintainer="Javier Santos <jsa4000@gmail.com>" \
       org.opencontainers.image.authors="Javier Santos <jsa4000@gmail.com>" \
