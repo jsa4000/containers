@@ -41,6 +41,7 @@ Current available Images are the following.
 | [toolbox](https://github.com/jsa4000/containers/pkgs/container/toolbox)  | stable  | ghcr.io/jsa4000/toolbox  |
 | [opentofu](https://github.com/jsa4000/containers/pkgs/container/opentofu) | stable  | ghcr.io/jsa4000/opentofu |
 | [excalidraw](https://github.com/jsa4000/containers/pkgs/container/excalidraw) | stable  | ghcr.io/jsa4000/excalidraw |
+| [unoserver](https://github.com/jsa4000/containers/pkgs/container/unoserver) | stable  | ghcr.io/jsa4000/unoserver |
 
 ## Credits
 
