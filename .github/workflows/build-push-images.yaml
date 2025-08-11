@@ -18,7 +18,7 @@ jobs:
     outputs:
       paths: ${{ steps.changed-files.outputs.all_changed_and_modified_files }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
