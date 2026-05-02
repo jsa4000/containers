@@ -1,4 +1,4 @@
-FROM eclipse-temurin:23.0.1_11-jdk-alpine
+FROM eclipse-temurin:25.0.3_9-jdk-alpine
 
 ARG BUILD_CONTEXT="build-context"
 ARG UID=worker
