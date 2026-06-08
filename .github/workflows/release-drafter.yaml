@@ -20,7 +20,7 @@ jobs:
     name: "[toolbox] Draft release"
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v6
+      - uses: release-drafter/release-drafter@v7
         with:
           config-name: release-drafter/toolbox.yaml
         env:
@@ -29,7 +29,7 @@ jobs:
     name: "[opentofu] Draft release"
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v6
+      - uses: release-drafter/release-drafter@v7
         with:
           config-name: release-drafter/opentofu.yaml
         env:
@@ -38,7 +38,7 @@ jobs:
     name: "[excalidraw] Draft release"
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v6
+      - uses: release-drafter/release-drafter@v7
         with:
           config-name: release-drafter/excalidraw.yaml
         env:
@@ -47,7 +47,7 @@ jobs:
     name: "[unoserver] Draft release"
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v6
+      - uses: release-drafter/release-drafter@v7
         with:
           config-name: release-drafter/unoserver.yaml
         env:
