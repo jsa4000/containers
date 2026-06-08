@@ -76,7 +76,7 @@ jobs:
         # https://github.com/docker/metadata-action
         # Match allow to tag independently as "app-v1.0.0"
         # echo "app-v1.0.0" | sed 's/\([^-]*\).*/\1/'
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.image }}
           tags: |
