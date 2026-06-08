@@ -43,6 +43,44 @@ Current available Images are the following.
 | [excalidraw](https://github.com/jsa4000/containers/pkgs/container/excalidraw) | stable  | ghcr.io/jsa4000/excalidraw |
 | [unoserver](https://github.com/jsa4000/containers/pkgs/container/unoserver) | stable  | ghcr.io/jsa4000/unoserver |
 
+## Development
+
+### Prerequisites
+
+This repo relies on [Task](https://taskfile.dev) as its command runner and [pre-commit](https://pre-commit.com) for git hooks. The fastest way to get all required tooling is via [Homebrew](https://brew.sh):
+
+```bash
+task brew:init
+```
+
+This installs `direnv`, `gitleaks`, `ipcalc`, `markdownlint-cli`, `pre-commit`, `prettier`, `yamllint`, `gettext`, `mkdocs`, `go-task`, `jq` and `yq`.
+
+> If you don't use Homebrew, install at least [`go-task`](https://taskfile.dev/installation/) and [`pre-commit`](https://pre-commit.com/#install) manually.
+
+### Initialize the repository
+
+After cloning, install the git hooks so checks run automatically on every commit:
+
+```bash
+task init
+```
+
+This runs `pre-commit install --install-hooks`, wiring up the `.git/hooks/pre-commit` hook from [.pre-commit-config.yaml](.pre-commit-config.yaml). On each commit it will lint YAML/Markdown, fix trailing whitespace and line endings, and tidy up CODEOWNERS, smart quotes and ligatures.
+
+### Common tasks
+
+Run `task` (or `task -l`) to list every available task. The most useful ones:
+
+```bash
+task precommit:run      # run all pre-commit hooks against every file
+task precommit:update   # update pinned hook versions (pre-commit autoupdate)
+
+task lint:all           # lint Markdown, YAML and general formatting
+task format:all         # auto-format Markdown and YAML with Prettier
+```
+
+Tasks are defined in [Taskfile.yaml](Taskfile.yaml) and the included files under [.github/taskfiles/](.github/taskfiles/).
+
 ## Credits
 
 A lot of inspiration and ideas are thanks to the hard work of [hotio.dev](https://hotio.dev/) and [linuxserver.io](https://www.linuxserver.io/) contributors.
