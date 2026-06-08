@@ -36,12 +36,12 @@ Below are some of the tools I find useful.
 
 Current available Images are the following.
 
-| Container                                                                 | Channel | Image                    |
-| ------------------------------------------------------------------------- | ------- | ------------------------ |
-| [toolbox](https://github.com/jsa4000/containers/pkgs/container/toolbox)  | stable  | ghcr.io/jsa4000/toolbox  |
-| [opentofu](https://github.com/jsa4000/containers/pkgs/container/opentofu) | stable  | ghcr.io/jsa4000/opentofu |
+| Container                                                                     | Channel | Image                      |
+| ----------------------------------------------------------------------------- | ------- | -------------------------- |
+| [toolbox](https://github.com/jsa4000/containers/pkgs/container/toolbox)       | stable  | ghcr.io/jsa4000/toolbox    |
+| [opentofu](https://github.com/jsa4000/containers/pkgs/container/opentofu)     | stable  | ghcr.io/jsa4000/opentofu   |
 | [excalidraw](https://github.com/jsa4000/containers/pkgs/container/excalidraw) | stable  | ghcr.io/jsa4000/excalidraw |
-| [unoserver](https://github.com/jsa4000/containers/pkgs/container/unoserver) | stable  | ghcr.io/jsa4000/unoserver |
+| [unoserver](https://github.com/jsa4000/containers/pkgs/container/unoserver)   | stable  | ghcr.io/jsa4000/unoserver  |
 
 ## Development
 
@@ -77,9 +77,21 @@ task precommit:update   # update pinned hook versions (pre-commit autoupdate)
 
 task lint:all           # lint Markdown, YAML and general formatting
 task format:all         # auto-format Markdown and YAML with Prettier
+
+task container:new -- myapp   # scaffold a new container image
 ```
 
 Tasks are defined in [Taskfile.yaml](Taskfile.yaml) and the included files under [.github/taskfiles/](.github/taskfiles/).
+
+### Add a new container
+
+Run `task container:new -- myapp` to scaffold a new container (directory, `Dockerfile`, `README.md` and its `release-drafter` config). The build and release workflows discover containers automatically, so no workflow edits are needed.
+
+### Documentation
+
+- [Create a new container](.github/workflows/docs/create-container.md) — scaffold and open a PR.
+- [Releases (automatic & manual)](.github/workflows/docs/releases.md) — versioning, publishing drafts and cutting specific versions.
+- [FAQ & troubleshooting](.github/workflows/docs/faq.md) — common issues and errors.
 
 ## Credits
 

@@ -1,0 +1,80 @@
+version: "3"
+
+vars:
+  TEMPLATE_DIR: .github/templates/container
+  RELEASE_DRAFTER_DIR: .github/release-drafter
+
+tasks:
+  build:*:
+    desc: "Build a container image locally (usage: task container:build:toolbox)"
+    silent: true
+    vars:
+      APP: "{{index .MATCH 0}}"
+      PLATFORM: '{{.PLATFORM | default (printf "linux/%s" ARCH)}}'
+      TAG: '{{.TAG | default "local"}}'
+    cmds:
+      - |
+        set -eu
+        app="{{.APP}}"
+
+        if [ ! -f "${app}/Dockerfile" ]; then
+          echo "ERROR: '${app}/Dockerfile' not found. '${app}' is not a valid container."
+          exit 1
+        fi
+
+        echo "Building '${app}:{{.TAG}}' for platform '{{.PLATFORM}}'..."
+        docker buildx build \
+          --load \
+          --platform "{{.PLATFORM}}" \
+          -t "${app}:{{.TAG}}" \
+          "${app}"
+
+        echo ""
+        echo "Built image: ${app}:{{.TAG}}"
+        echo "Run it with: docker run --rm -it ${app}:{{.TAG}}"
+
+  new:
+    desc: "Scaffold a new container image (usage: task container:new -- myapp)"
+    silent: true
+    vars:
+      NAME: "{{.NAME | default .CLI_ARGS}}"
+    cmds:
+      - |
+        set -eu
+        name="{{.NAME}}"
+
+        if [ -z "${name}" ]; then
+          echo "ERROR: container name is required."
+          echo "Usage: task container:new -- myapp"
+          exit 1
+        fi
+
+        # App names map 1:1 to a top-level directory and an image name. Keep them
+        # lowercase alphanumeric (hyphens allowed) so tags '<app>-v<semver>' parse safely.
+        if ! echo "${name}" | grep -Eq '^[a-z0-9][a-z0-9-]*$'; then
+          echo "ERROR: invalid name '${name}'. Use lowercase letters, digits and hyphens."
+          exit 1
+        fi
+
+        config="{{.RELEASE_DRAFTER_DIR}}/${name}.yaml"
+        if [ -d "${name}" ] || [ -f "${config}" ]; then
+          echo "ERROR: container '${name}' already exists (directory or release-drafter config present)."
+          exit 1
+        fi
+
+        echo "Scaffolding container '${name}'..."
+        mkdir -p "${name}"
+        sed "s/__APP__/${name}/g" "{{.TEMPLATE_DIR}}/Dockerfile.tmpl" > "${name}/Dockerfile"
+        sed "s/__APP__/${name}/g" "{{.TEMPLATE_DIR}}/README.md.tmpl" > "${name}/README.md"
+        sed "s/__APP__/${name}/g" "{{.TEMPLATE_DIR}}/release-drafter.yaml.tmpl" > "${config}"
+
+        echo "Created:"
+        echo "  ${name}/Dockerfile"
+        echo "  ${name}/README.md"
+        echo "  ${config}"
+        echo ""
+        echo "Next steps:"
+        echo "  1. Edit ${name}/Dockerfile and ${name}/README.md."
+        echo "  2. Add the image to the table in README.md."
+        echo "  3. Open a PR titled '[${name}] Add ${name} container image'."
+        echo "The release-drafter and build workflows pick up the new container automatically."

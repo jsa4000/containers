@@ -17,8 +17,12 @@ jobs:
 
       - name: Parse App from Tag
         id: parse-tag
+        env:
+          REF: ${{ github.ref_name }}
         run: |
-          echo "app=$(echo '${{ github.ref_name }}' | sed 's/\([^-]*\).*/\1/')" >> $GITHUB_OUTPUT
+          # Tags look like '<app>-v<semver>'. Strip the '-v<semver>' suffix so
+          # app names containing hyphens (i.e: my-app-v1.0.0 -> my-app) parse correctly.
+          echo "app=${REF%-v*}" >> "$GITHUB_OUTPUT"
 
       - run: echo "${{ steps.parse-tag.outputs.app }}"
 

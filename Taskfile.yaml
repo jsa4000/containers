@@ -5,6 +5,7 @@ includes:
   lint: .github/taskfiles/lint.yaml
   format: .github/taskfiles/format.yaml
   brew: .github/taskfiles/brew.yaml
+  container: .github/taskfiles/container.yaml
 
 tasks:
   default:
