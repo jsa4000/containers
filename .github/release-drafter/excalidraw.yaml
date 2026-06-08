@@ -1,4 +1,4 @@
-_extends: containers:.github/release-drafter/base.yaml
+_extends: containers:base.yaml
 name-template: "excalidraw-v$RESOLVED_VERSION"
 tag-template: "excalidraw-v$RESOLVED_VERSION"
 tag-prefix: excalidraw-v

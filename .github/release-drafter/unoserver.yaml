@@ -1,4 +1,4 @@
-_extends: containers:.github/release-drafter/base.yaml
+_extends: containers:base.yaml
 name-template: "unoserver-v$RESOLVED_VERSION"
 tag-template: "unoserver-v$RESOLVED_VERSION"
 tag-prefix: unoserver-v

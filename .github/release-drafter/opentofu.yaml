@@ -1,4 +1,4 @@
-_extends: containers:.github/release-drafter/base.yaml
+_extends: containers:base.yaml
 name-template: "opentofu-v$RESOLVED_VERSION"
 tag-template: "opentofu-v$RESOLVED_VERSION"
 tag-prefix: opentofu-v
