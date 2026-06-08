@@ -1,0 +1,6 @@
+_extends: containers:base.yaml
+name-template: "caddy-v$RESOLVED_VERSION"
+tag-template: "caddy-v$RESOLVED_VERSION"
+tag-prefix: caddy-v
+include-paths:
+  - "caddy/"
