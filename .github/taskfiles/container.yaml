@@ -33,6 +33,21 @@ tasks:
         echo "Built image: ${app}:{{.TAG}}"
         echo "Run it with: docker run --rm -it ${app}:{{.TAG}}"
 
+  build:all:
+    desc: "Build all container images locally in parallel (usage: task container:build:all)"
+    silent: true
+    vars:
+      TAG: '{{.TAG | default "local"}}'
+      PLATFORM: '{{.PLATFORM | default (printf "linux/%s" ARCH)}}'
+      APPS:
+        sh: for d in */Dockerfile; do printf '%s ' "${d%/Dockerfile}"; done
+    deps:
+      - for: { var: APPS }
+        task: build:{{.ITEM}}
+        vars:
+          TAG: "{{.TAG}}"
+          PLATFORM: "{{.PLATFORM}}"
+
   new:
     desc: "Scaffold a new container image (usage: task container:new -- myapp)"
     silent: true
