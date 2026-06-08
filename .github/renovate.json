@@ -12,6 +12,20 @@
   ],
   "labels": ["dependencies"],
   "semanticCommits": "disabled",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/",
+        "/(^|/)Dockerfile\\.[^/]*$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>\\S+))?(?: extractVersion=(?<extractVersion>\\S+))?\\s+(?:ARG|ENV) [A-Za-z0-9_]+=\"?(?<currentValue>[^\"\\s]+)\"?"
+      ],
+      "datasourceTemplate": "{{{datasource}}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ],
   "packageRules": [
     {
       "matchPackageNames": ["*"],

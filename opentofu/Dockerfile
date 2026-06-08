@@ -8,6 +8,7 @@ LABEL maintainer="Javier Santos <jsa4000@gmail.com>" \
       org.opencontainers.image.description="Container image with OpenTofu and a variety of linux tools"
 
 ARG TARGETPLATFORM
+# renovate: datasource=github-releases depName=opentofu/opentofu extractVersion=^v(?<version>.+)$
 ENV OPENTOFU_VERSION=1.8.6
 
 USER root

@@ -3,7 +3,7 @@ FROM eclipse-temurin:25.0.3_9-jdk-alpine
 ARG BUILD_CONTEXT="build-context"
 ARG UID=worker
 ARG GID=worker
-# renovate: pypi: unoserver
+# renovate: datasource=pypi depName=unoserver versioning=pep440
 ARG VERSION_UNOSERVER=3.1
 
 LABEL org.opencontainers.image.title="unoserver"
