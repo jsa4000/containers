@@ -1,5 +1,5 @@
 # renovate: datasource=docker depName=caddy
-ARG CADDY_VERSION=2.11.3
+ARG CADDY_VERSION=2.11.4
 # renovate: datasource=github-releases depName=caddy-dns/cloudflare
 ARG CADDY_DNS_CLOUDFLARE_VERSION=v0.2.4
 
