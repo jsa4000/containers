@@ -1,0 +1,64 @@
+name: Cut Release
+
+# Manually cut a release for a single container by creating and pushing the
+# tag '<app>-v<version>'. That tag triggers 'build-push-image-release.yaml',
+# which builds and publishes 'ghcr.io/<owner>/<app>' with the semver tags.
+#
+# Use this for explicit patch/fix/hotfix releases without editing the
+# release-drafter draft in the GitHub UI.
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        required: true
+        type: string
+        description: "Container to release (i.e: opentofu)"
+      version:
+        required: true
+        type: string
+        description: "Semantic version without prefix (i.e: 1.0.5)"
+
+permissions:
+  contents: write
+
+jobs:
+  cut-release:
+    name: "[${{ inputs.app }}] Cut release v${{ inputs.version }}"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Validate inputs
+        run: |
+          set -eu
+          app="${{ inputs.app }}"
+          version="${{ inputs.version }}"
+
+          if [ ! -d "${app}" ]; then
+            echo "ERROR: container directory '${app}/' does not exist."
+            exit 1
+          fi
+
+          if ! echo "${version}" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "ERROR: version '${version}' must be semver MAJOR.MINOR.PATCH (i.e: 1.0.5)."
+            exit 1
+          fi
+
+          tag="${app}-v${version}"
+          if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "ERROR: tag '${tag}' already exists."
+            exit 1
+          fi
+          echo "tag=${tag}" >> "$GITHUB_ENV"
+
+      - name: Create and push tag
+        run: |
+          set -eu
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "${tag}" -m "Release ${tag}"
+          git push origin "${tag}"
+          echo "Pushed tag ${tag}. The release build workflow will publish the image."

@@ -7,5 +7,16 @@
   ],
   "extends": [
     "config:recommended"
+  ],
+  "labels": ["dependencies"],
+  "semanticCommits": "disabled",
+  "additionalBranchPrefix": "{{packageFileDir}}-",
+  "commitMessagePrefix": "[{{packageFileDir}}]",
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "additionalBranchPrefix": "ci-",
+      "commitMessagePrefix": "[ci]"
+    }
   ]
 }

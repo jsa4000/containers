@@ -1,0 +1,23 @@
+FROM docker.io/library/alpine:3.23
+
+LABEL maintainer="Javier Santos <jsa4000@gmail.com>" \
+      org.opencontainers.image.authors="Javier Santos <jsa4000@gmail.com>" \
+      org.opencontainers.image.url="https://github.com/jsa4000/containers.git" \
+      org.opencontainers.image.licenses="Apache License" \
+      org.opencontainers.image.title="__APP__" \
+      org.opencontainers.image.description="Container image for __APP__"
+
+ARG TARGETPLATFORM
+
+USER root
+WORKDIR /app
+
+#hadolint ignore=DL3018
+RUN \
+    apk add --no-cache \
+        bash \
+        ca-certificates \
+        catatonit
+
+ENTRYPOINT ["/usr/bin/catatonit", "--"]
+CMD ["bash"]

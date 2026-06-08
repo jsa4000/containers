@@ -6,6 +6,11 @@ on:
       - main
   pull_request:
     types: [opened, reopened, synchronize]
+  # Manual regeneration / recovery entry point. Run from 'main' (Actions ->
+  # Release Drafter -> Run workflow) to rebuild every container's draft from the
+  # latest changes since each app's previous published version. Re-running is
+  # idempotent: release-drafter updates each existing draft in place (no
+  # duplicates), and apps without new changes are left effectively unchanged.
   workflow_dispatch: {}
 
 # Permission is required to create a github release and autolabeler
@@ -15,40 +20,43 @@ permissions:
 
 # Support for Multiple Packages
 # https://github.com/release-drafter/release-drafter/issues/575
+#
+# Instead of hardcoding one job per container, the apps are discovered from the
+# per-app configuration files in '.github/release-drafter/*.yaml' (excluding the
+# shared 'base.yaml'). Adding a new container only requires its config file to
+# exist (created by 'task container:new') - this workflow never needs editing.
 jobs:
-  toolbox:
-    name: "[toolbox] Draft release"
+  discover:
+    name: Discover containers
     runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.discover.outputs.apps }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Discover release-drafter configs
+        id: discover
+        run: |
+          apps=$(ls .github/release-drafter/*.yaml \
+            | xargs -n1 basename \
+            | sed 's/\.yaml$//' \
+            | grep -vx 'base' \
+            | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "apps=${apps}" >> "$GITHUB_OUTPUT"
+          echo "Discovered apps: ${apps}"
+
+  draft:
+    name: "[${{ matrix.app }}] Draft release"
+    needs: discover
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJSON(needs.discover.outputs.apps) }}
     steps:
       - uses: release-drafter/release-drafter@v7
         with:
-          config-name: release-drafter/toolbox.yaml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  opentofu:
-    name: "[opentofu] Draft release"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: release-drafter/release-drafter@v7
-        with:
-          config-name: release-drafter/opentofu.yaml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  excalidraw:
-    name: "[excalidraw] Draft release"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: release-drafter/release-drafter@v7
-        with:
-          config-name: release-drafter/excalidraw.yaml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  unoserver:
-    name: "[unoserver] Draft release"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: release-drafter/release-drafter@v7
-        with:
-          config-name: release-drafter/unoserver.yaml
+          config-name: release-drafter/${{ matrix.app }}.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
