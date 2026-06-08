@@ -36,6 +36,13 @@
       "matchManagers": ["github-actions"],
       "additionalBranchPrefix": "ci-",
       "commitMessagePrefix": "[ci]"
+    },
+    {
+      "description": "Excalidraw requires Node 18-22, so do not bump its node base image major",
+      "matchManagers": ["dockerfile"],
+      "matchFileNames": ["excalidraw/Dockerfile"],
+      "matchDepNames": ["node"],
+      "enabled": false
     }
   ]
 }
