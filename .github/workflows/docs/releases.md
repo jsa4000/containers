@@ -24,12 +24,12 @@ image and push it to `ghcr.io/<owner>/<app>` with the derived semver tags
   last release, using the `version-resolver` in
   [`.github/release-drafter/base.yaml`](../../release-drafter/base.yaml):
 
-  | Label                      | Bump      |
-  | -------------------------- | --------- |
-  | `major` / `breaking`       | `MAJOR`   |
-  | `minor`                    | `MINOR`   |
-  | `patch`                    | `PATCH`   |
-  | _none of the above_        | `PATCH` (default) |
+  | Label                | Bump              |
+  | -------------------- | ----------------- |
+  | `major` / `breaking` | `MAJOR`           |
+  | `minor`              | `MINOR`           |
+  | `patch`              | `PATCH`           |
+  | _none of the above_  | `PATCH` (default) |
 
 - PRs are auto-labeled by the `autolabeler` rules (branch name / changed files / title), e.g.
   `feature/*` -> `enhancement`, `fix/*` or a title matching `fix` -> `bug`, `*.md` ->
