@@ -10,9 +10,12 @@
   ],
   "labels": ["dependencies"],
   "semanticCommits": "disabled",
-  "additionalBranchPrefix": "{{packageFileDir}}-",
-  "commitMessagePrefix": "[{{packageFileDir}}]",
   "packageRules": [
+    {
+      "matchPackageNames": ["*"],
+      "additionalBranchPrefix": "{{packageFileDir}}-",
+      "commitMessagePrefix": "[{{packageFileDir}}]"
+    },
     {
       "matchManagers": ["github-actions"],
       "additionalBranchPrefix": "ci-",
