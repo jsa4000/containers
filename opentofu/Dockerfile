@@ -9,7 +9,7 @@ LABEL maintainer="Javier Santos <jsa4000@gmail.com>" \
 
 ARG TARGETPLATFORM
 # renovate: datasource=github-releases depName=opentofu/opentofu extractVersion=^v(?<version>.+)$
-ENV OPENTOFU_VERSION=1.12.1
+ENV OPENTOFU_VERSION=1.12.2
 
 USER root
 WORKDIR /app
