@@ -1,0 +1,6 @@
+_extends: containers:base.yaml
+name-template: "postgres-v$RESOLVED_VERSION"
+tag-template: "postgres-v$RESOLVED_VERSION"
+tag-prefix: postgres-v
+include-paths:
+  - "postgres/"
