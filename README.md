@@ -42,6 +42,8 @@ Current available Images are the following.
 | [opentofu](https://github.com/jsa4000/containers/pkgs/container/opentofu)     | stable  | ghcr.io/jsa4000/opentofu   |
 | [excalidraw](https://github.com/jsa4000/containers/pkgs/container/excalidraw) | stable  | ghcr.io/jsa4000/excalidraw |
 | [unoserver](https://github.com/jsa4000/containers/pkgs/container/unoserver)   | stable  | ghcr.io/jsa4000/unoserver  |
+| [caddy](https://github.com/jsa4000/containers/pkgs/container/caddy)           | stable  | ghcr.io/jsa4000/caddy      |
+| [postgres](https://github.com/jsa4000/containers/pkgs/container/postgres)     | stable  | ghcr.io/jsa4000/postgres   |
 
 ## Development
 
