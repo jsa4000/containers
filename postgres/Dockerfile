@@ -4,7 +4,7 @@
 # Staying on `postgres:<version>` keeps Postgres updates on the official release cadence and the
 # same Debian base as the data volume (so the volume is reusable across rebuilds).
 # `PG_MAJOR` comes from the base image, so the FROM tag is the only Postgres version to bump.
-FROM postgres:18.6
+FROM postgres:18.7
 
 LABEL maintainer="Javier Santos <jsa4000@gmail.com>" \
       org.opencontainers.image.authors="Javier Santos <jsa4000@gmail.com>" \
